@@ -1,0 +1,3686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSL Master Kit Pro — Edition Complete</title>
+    <style>
+        /* ========== DESIGN SYSTEM ========== */
+        :root {
+            --primary: #0B5394;
+            --primary-light: #3A7BC8;
+            --primary-dark: #073763;
+            --accent: #990000;
+            --accent-light: #CC3333;
+            --success: #2E7D32;
+            --warning: #F57C00;
+            --neutral-100: #FFFFFF;
+            --neutral-200: #F8F9FA;
+            --neutral-300: #E9ECEF;
+            --neutral-400: #DEE2E6;
+            --neutral-500: #ADB5BD;
+            --neutral-600: #6C757D;
+            --neutral-700: #495057;
+            --neutral-800: #343A40;
+            --neutral-900: #212529;
+            
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.07);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+        
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", "Roboto", Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: var(--neutral-900);
+            background: var(--neutral-100);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* ========== TYPOGRAPHY ========== */
+        h1 {
+            font-size: 32pt;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5em;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-size: 22pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6em;
+            padding-bottom: 0.3em;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        h3 {
+            font-size: 16pt;
+            font-weight: 600;
+            color: var(--neutral-800);
+            margin-bottom: 0.4em;
+        }
+        
+        h4 {
+            font-size: 13pt;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 0.3em;
+        }
+        
+        p {
+            margin-bottom: 0.8em;
+            color: var(--neutral-800);
+        }
+        
+        /* ========== PRINT OPTIMIZATION ========== */
+        @page {
+            size: A4;
+            margin: 12mm;
+            @bottom-center {
+                content: "Page " counter(page) " | NoteXpress Education";
+                font-size: 8pt;
+                color: #666;
+            }
+        }
+        
+        @media print {
+            body {
+                font-size: 10.5pt;
+            }
+            
+            .page {
+                page-break-before: always;
+                min-height: 100vh;
+                padding: 10px !important;
+                position: relative;
+            }
+            
+            .page:first-child {
+                page-break-before: auto;
+            }
+            
+            .page::after {
+                content: "NoteXpress Education - www.youtube.com/@NoteXpress-Education";
+                position: fixed;
+                bottom: 5mm;
+                right: 5mm;
+                font-size: 7pt;
+                color: #ccc;
+                opacity: 0.7;
+                z-index: 1000;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-button {
+                display: none !important;
+            }
+            
+            a {
+                color: var(--neutral-900) !important;
+                text-decoration: none !important;
+            }
+            
+            .shadow-card {
+                box-shadow: none !important;
+                border: 1px solid var(--neutral-400) !important;
+            }
+        }
+        
+        /* ========== LAYOUT COMPONENTS ========== */
+        .page {
+            max-width: 210mm;
+            margin: 0 auto 40px;
+            padding: 30px;
+            background: var(--neutral-100);
+        }
+        
+        .container {
+            max-width: 100%;
+        }
+        
+        /* ========== GRID SYSTEM ========== */
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .grid-auto {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        
+        /* ========== CARDS & BOXES ========== */
+        .shadow-card {
+            background: var(--neutral-100);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .shadow-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: var(--neutral-100);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-accent {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+        }
+        
+        .card-success {
+            border-left: 4px solid var(--success);
+            background: rgba(46, 125, 50, 0.05);
+        }
+        
+        .card-warning {
+            border-left: 4px solid var(--warning);
+            background: rgba(245, 124, 0, 0.05);
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+        
+        /* ========== BADGES & TAGS ========== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        
+        .badge-primary {
+            background: var(--primary);
+            color: var(--neutral-100);
+        }
+        
+        .badge-accent {
+            background: var(--accent);
+            color: var(--neutral-100);
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: var(--neutral-100);
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: var(--neutral-100);
+        }
+        
+        .badge-light {
+            background: var(--neutral-300);
+            color: var(--neutral-800);
+        }
+        
+        /* ========== RIBBON & HEADERS ========== */
+        .ribbon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--neutral-100);
+            padding: 12px 20px;
+            margin: 30px -30px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 12pt;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        
+        .ribbon::before,
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            border-style: solid;
+            border-color: var(--primary-dark) transparent transparent transparent;
+        }
+        
+        .ribbon::before {
+            left: 0;
+            border-width: 10px 0 0 10px;
+        }
+        
+        .ribbon::after {
+            right: 0;
+            border-width: 10px 10px 0 0;
+        }
+        
+        /* ========== FRAMES & BOXES ========== */
+        .frame {
+            background: var(--neutral-200);
+            border: 2px dashed var(--neutral-500);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-size: 11pt;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .frame:hover {
+            background: var(--neutral-300);
+            border-color: var(--primary);
+        }
+        
+        .frame-number {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--primary);
+            color: var(--neutral-100);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 8pt;
+            font-weight: 700;
+        }
+        
+        /* ========== NOTE BOXES ========== */
+        .note-prof {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 5px solid var(--warning);
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 10pt;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .note-prof strong {
+            color: var(--warning);
+            font-size: 11pt;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* ========== ICONS SYSTEM ========== */
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--neutral-200);
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .icon-lg {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .icon-primary {
+            background: rgba(11, 83, 148, 0.1);
+            color: var(--primary);
+        }
+        
+        .icon-accent {
+            background: rgba(153, 0, 0, 0.1);
+            color: var(--accent);
+        }
+        
+        /* ========== ASSESSMENT COMPONENTS ========== */
+        .progress-bar {
+            width: 100%;
+            height: 24px;
+            background: var(--neutral-300);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-100);
+            font-weight: 700;
+            font-size: 10pt;
+            transition: width 0.5s ease;
+        }
+        
+        .eval-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .eval-item {
+            text-align: center;
+        }
+        
+        .eval-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--neutral-400);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20pt;
+            margin: 0 auto 5px;
+            background: var(--neutral-100);
+            transition: all 0.3s ease;
+        }
+        
+        .eval-circle:hover {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .eval-circle.checked {
+            background: var(--success);
+            color: var(--neutral-100);
+            border-color: var(--success);
+        }
+        
+        /* ========== TABLES ========== */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 20px 0;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--neutral-100);
+        }
+        
+        th {
+            padding: 12px 16px;
+            font-weight: 600;
+            text-align: left;
+            font-size: 10pt;
+            letter-spacing: 0.5px;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid var(--neutral-300);
+            transition: background 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background: var(--neutral-200);
+        }
+        
+        td {
+            padding: 10px 16px;
+            font-size: 10pt;
+        }
+        
+        .check-cell {
+            text-align: center;
+            width: 80px;
+        }
+        
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--neutral-400);
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        .check-box:hover {
+            border-color: var(--primary);
+            background: var(--neutral-200);
+        }
+        
+        /* ========== CUTTING CARDS ========== */
+        .cut-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin: 20px 0;
+            border: 2px dashed var(--neutral-600);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        
+        .cut-card {
+            border: 1px dashed var(--neutral-400);
+            padding: 20px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--neutral-100);
+            position: relative;
+            transition: background 0.2s ease;
+        }
+        
+        .cut-card:nth-child(even) {
+            background: var(--neutral-200);
+        }
+        
+        .cut-card:hover {
+            background: rgba(11, 83, 148, 0.05);
+        }
+        
+        .cut-card .emoji {
+            font-size: 24pt;
+            margin: 5px 0;
+        }
+        
+        /* ========== COVER PAGE ========== */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(11,83,148,0.05) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .cover-title {
+            font-size: 42pt;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .cover-subtitle {
+            font-size: 18pt;
+            color: var(--neutral-600);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .cover-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        /* ========== EXPRESSION LISTS ========== */
+        .expression-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .expression-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: var(--neutral-100);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius);
+            font-size: 13pt;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .expression-item:hover {
+            border-color: var(--primary);
+            background: rgba(11, 83, 148, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .expression-icon {
+            font-size: 20pt;
+            margin-right: 12px;
+        }
+        
+        /* ========== TIMELINE ========== */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 22px;
+            height: 22px;
+            background: var(--neutral-100);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .timeline-content {
+            background: var(--neutral-100);
+            padding: 15px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* ========== UTILITY CLASSES ========== */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-primary { color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .text-muted { color: var(--neutral-600); }
+        
+        .mt-1 { margin-top: 10px; }
+        .mt-2 { margin-top: 20px; }
+        .mt-3 { margin-top: 30px; }
+        .mb-1 { margin-bottom: 10px; }
+        .mb-2 { margin-bottom: 20px; }
+        .mb-3 { margin-bottom: 30px; }
+        
+        .p-1 { padding: 10px; }
+        .p-2 { padding: 20px; }
+        .p-3 { padding: 30px; }
+        
+        .bold { font-weight: 700; }
+        .italic { font-style: italic; }
+        .uppercase { text-transform: uppercase; }
+        
+        .flex { display: flex; }
+        .flex-center { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* ========== ANIMATIONS ========== */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        /* ========== CULTURAL ELEMENTS ========== */
+        .culture-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 5px solid var(--success);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .culture-card::after {
+            content: '🇨🇦';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40pt;
+            opacity: 0.2;
+        }
+        
+        /* ========== FAMILY COMMUNICATION ========== */
+        .family-box {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+            border: 2px solid #E91E63;
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .family-box h3 {
+            color: #E91E63;
+        }
+        
+        /* ========== PRINT BUTTONS ========== */
+        .print-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--neutral-100);
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-size: 10pt;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .print-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--neutral-200);
+            border-radius: var(--radius);
+            border: 2px dashed var(--neutral-400);
+        }
+        
+        .print-section h4 {
+            margin-right: 15px;
+            color: var(--primary);
+        }
+    </style>
+    <script>
+        function printPage(pageId) {
+            const page = document.getElementById(pageId);
+            if (page) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>FSL Master Kit Pro - ${pageId}</title>
+                        <style>
+                            ${document.querySelector('style').innerHTML}
+                        </style>
+                    </head>
+                    <body>
+                        ${page.outerHTML}
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+        }
+        
+        function printSection(startPageId, endPageId) {
+            const pages = [];
+            let collecting = false;
+            
+            document.querySelectorAll('.page').forEach(page => {
+                if (page.id === startPageId) collecting = true;
+                if (collecting) pages.push(page.outerHTML);
+                if (page.id === endPageId) collecting = false;
+            });
+            
+            if (pages.length > 0) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>FSL Master Kit Pro - Section</title>
+                        <style>
+                            ${document.querySelector('style').innerHTML}
+                        </style>
+                    </head>
+                    <body>
+                        ${pages.join('')}
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+        }
+        
+        function printAll() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+
+<!-- Page 1: Enhanced Cover -->
+<div class="page cover" id="cover-page">
+    <div class="container">
+        <h1 class="cover-title">FSL Master Kit Pro</h1>
+        <div class="cover-subtitle">Édition Back-to-School</div>
+        <p style="font-size: 14pt; color: var(--neutral-700); margin: 20px 0;">
+            Kit pédagogique complet pour l'enseignement du FLS<br>
+            Aligné CECR A1–A2 | Contexte canadien | K-12 Ready
+        </p>
+        
+        <div class="cover-badges">
+            <span class="badge badge-primary">Print-Ready</span>
+            <span class="badge badge-accent">No-Prep</span>
+            <span class="badge badge-success">CECR-Aligned</span>
+            <span class="badge badge-warning">Differentiated</span>
+        </div>
+        
+        <div class="shadow-card" style="max-width: 600px; margin: 40px auto; text-align: left;">
+            <h3 style="color: var(--primary); margin-bottom: 15px;">
+                <span class="icon-wrapper icon-primary">📚</span>
+                Comment utiliser ce kit
+            </h3>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Impression flexible :</strong> Format A4 ou Letter, recto-verso supporté</li>
+                <li><strong>Routines quotidiennes :</strong> 5 semaines de contenu progressif inclus</li>
+                <li><strong>Matériel prêt à l'emploi :</strong> Affiches, cartes à découper, grilles d'évaluation</li>
+                <li><strong>Différenciation intégrée :</strong> Supports A1 et A2 pour chaque activité</li>
+                <li><strong>Communication famille :</strong> Lettres et portfolios inclus</li>
+                <li><strong>Évaluation complète :</strong> Formative, sommative et auto-évaluation</li>
+            </ul>
+        </div>
+        
+        <div class="flex-between" style="margin-top: 60px; width: 100%; max-width: 600px;">
+            <p style="font-size: 10pt; color: var(--neutral-600);">
+                Version 2.0 Pro | by Réda Haiat
+            </p>
+            <p style="font-size: 10pt; color: var(--neutral-600);">
+                NoteXpress Education — Premium Teacher Pack
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Page 2: Enhanced Table of Contents -->
+<div class="page" id="table-of-contents">
+    <h1>📋 Sommaire Complet</h1>
+    
+    <div class="grid grid-2 mt-3">
+        <div class="feature-card">
+            <h3 class="text-primary">📅 Section 1 : Routines Quotidiennes</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Semaine 1 : Se présenter (p.3)</li>
+                <li>✓ Semaine 2 : Exprimer ses goûts (p.4)</li>
+                <li>✓ Semaine 3 : Météo et temps (p.5)</li>
+                <li>✓ Semaine 4 : Émotions et sentiments (p.6)</li>
+                <li>✓ Semaine 5 : Raconter au passé (p.7)</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <h3 class="text-primary">🎯 Section 2 : Matériel Classe</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Affiche expressions essentielles (p.8)</li>
+                <li>✓ Affiche consignes visuelles (p.9)</li>
+                <li>✓ Stratégies métacognitives (p.10)</li>
+                <li>✓ Coin culture francophone (p.11)</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <h3 class="text-primary">🎲 Section 3 : Activités Orales</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Cartes "Tu préfères?" (p.12-13)</li>
+                <li>✓ Jeu de rôle au marché (p.14)</li>
+                <li>✓ Speed dating linguistique (p.15)</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <h3 class="text-primary">💬 Section 4 : Scaffolding</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Sentence frames progressifs (p.16)</li>
+                <li>✓ Connecteurs et transitions (p.17)</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <h3 class="text-primary">📊 Section 5 : Évaluation</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Grilles d'observation détaillées (p.18)</li>
+                <li>✓ Portfolio élève CECR (p.19)</li>
+                <li>✓ Exit tickets quotidiens (p.20)</li>
+                <li>✓ Auto-évaluation "Je peux" (p.21)</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <h3 class="text-primary">👨‍👩‍👧 Section 6 : Famille & IA</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>✓ Lettre aux parents bilingue (p.22)</li>
+                <li>✓ Activités maison (p.23)</li>
+                <li>✓ Prompts IA avancés (p.24)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <p><strong>💡 Navigation :</strong> Chaque section est autonome et peut être utilisée indépendamment. Les pages sont optimisées pour l'impression individuelle ou complète.</p>
+    </div>
+    
+    <!-- Section d'impression -->
+    <div class="print-section no-print">
+        <h4>🖨️ Options d'impression :</h4>
+        <button class="print-button" onclick="printAll()">📄 Imprimer tout le kit</button>
+        <button class="print-button" onclick="printSection('week1-routine', 'week5-routine')">📅 Routines (Semaines 1-5)</button>
+        <button class="print-button" onclick="printSection('expressions-poster', 'metacognitive-strategies')">🎯 Matériel classe</button>
+        <button class="print-button" onclick="printSection('tu-preferes-cards', 'scaffolding-section')">🎲 Activités orales</button>
+        <button class="print-button" onclick="printSection('evaluation-grids', 'family-communication')">📊 Évaluation & Famille</button>
+    </div>
+</div>
+
+<!-- Page 3: Week 1 Routine - Enhanced -->
+<div class="page" id="week1-routine">
+    <h2>📅 Semaine 1 : Je me présente</h2>
+    
+    <div class="ribbon">Progression sur 5 jours</div>
+    
+    <div class="timeline mt-3">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Lundi : Présentation de base</h4>
+                <div class="badge badge-primary mb-1">Objectif CECR : Je peux dire mon nom et mon âge</div>
+                <div class="grid grid-2 mt-2">
+                    <div>
+                        <strong>Déroulé (10 min)</strong>
+                        <ol style="font-size: 10pt;">
+                            <li>Modélisation enseignant (3 min)</li>
+                            <li>Répétition chorale (3 min)</li>
+                            <li>Pratique en paires (4 min)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <strong>Phrases cadres</strong>
+                        <div class="frame">Je m'appelle _______.</div>
+                        <div class="frame">J'ai _______ ans.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Mardi : Origine et domicile</h4>
+                <div class="badge badge-primary mb-1">Objectif CECR : Je peux dire d'où je viens</div>
+                <div class="grid grid-2 mt-2">
+                    <div>
+                        <strong>Déroulé (10 min)</strong>
+                        <ol style="font-size: 10pt;">
+                            <li>Révision lundi (2 min)</li>
+                            <li>Nouveaux éléments (4 min)</li>
+                            <li>Mini-dialogues (4 min)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <strong>Phrases cadres</strong>
+                        <div class="frame">J'habite à _______.</div>
+                        <div class="frame">Je viens de _______.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Mercredi : École et classe</h4>
+                <div class="badge badge-primary mb-1">Objectif CECR : Je peux parler de mon école</div>
+                <div class="grid grid-2 mt-2">
+                    <div>
+                        <strong>Déroulé (10 min)</strong>
+                        <ol style="font-size: 10pt;">
+                            <li>Révision cumulative (2 min)</li>
+                            <li>Vocabulaire scolaire (4 min)</li>
+                            <li>Présentation complète (4 min)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <strong>Phrases cadres</strong>
+                        <div class="frame">Je suis en _______ année.</div>
+                        <div class="frame">Mon prof s'appelle _______.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Jeudi : Famille</h4>
+                <div class="badge badge-accent mb-1">Objectif CECR A2 : Je peux décrire ma famille</div>
+                <div class="grid grid-2 mt-2">
+                    <div>
+                        <strong>Déroulé (10 min)</strong>
+                        <ol style="font-size: 10pt;">
+                            <li>Vocabulaire famille (3 min)</li>
+                            <li>Structures possessives (3 min)</li>
+                            <li>Descriptions simples (4 min)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <strong>Phrases cadres</strong>
+                        <div class="frame">J'ai __ frère(s) et __ sœur(s).</div>
+                        <div class="frame">Ma famille est _______.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Vendredi : Présentation complète</h4>
+                <div class="badge badge-success mb-1">Consolidation : Présentation de 1 minute</div>
+                <div class="grid grid-2 mt-2">
+                    <div>
+                        <strong>Déroulé (10 min)</strong>
+                        <ol style="font-size: 10pt;">
+                            <li>Préparation individuelle (3 min)</li>
+                            <li>Présentations en groupes (5 min)</li>
+                            <li>Feedback positif (2 min)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <strong>Évaluation rapide</strong>
+                        <div class="eval-grid">
+                            <div class="eval-item">
+                                <div class="eval-circle">✅</div>
+                                <small>Fluidité</small>
+                            </div>
+                            <div class="eval-item">
+                                <div class="eval-circle">🎯</div>
+                                <small>Précision</small>
+                            </div>
+                            <div class="eval-item">
+                                <div class="eval-circle">🌟</div>
+                                <small>Effort</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-prof">
+        <strong>🎯 Différenciation :</strong> 
+        A1 = 3-4 phrases simples avec support visuel | 
+        A2 = 6-8 phrases avec connecteurs et détails | 
+        Heritage speakers = Ajouter opinions et justifications
+    </div>
+</div>
+
+<!-- Page 4: Week 2 - Expressing Preferences -->
+<div class="page">
+    <h2>❤️ Semaine 2 : J'exprime mes goûts</h2>
+    
+    <div class="grid grid-3">
+        <div class="card-accent">
+            <div class="badge badge-light mb-1">A1 Base</div>
+            <h4>Structures simples</h4>
+            <div class="frame">J'aime _____</div>
+            <div class="frame">Je n'aime pas _____</div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                <strong>Support :</strong> Images, émojis 😊😢
+            </p>
+        </div>
+        
+        <div class="card-accent">
+            <div class="badge badge-primary mb-1">A1+ Intermédiaire</div>
+            <h4>Nuances d'intensité</h4>
+            <div class="frame">J'adore _____</div>
+            <div class="frame">Je déteste _____</div>
+            <div class="frame">J'aime bien _____</div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                <strong>Support :</strong> Échelle visuelle
+            </p>
+        </div>
+        
+        <div class="card-accent">
+            <div class="badge badge-accent mb-1">A2 Avancé</div>
+            <h4>Justifications</h4>
+            <div class="frame">J'aime _____ parce que _____</div>
+            <div class="frame">Je préfère _____ à _____</div>
+            <div class="frame">_____ me plaît car _____</div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                <strong>Support :</strong> Connecteurs logiques
+            </p>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🎭 Activité multimodale : Sondage de classe</h3>
+        <div class="grid grid-2">
+            <div>
+                <h4>Matériel</h4>
+                <ul>
+                    <li>Tableau de sondage grand format</li>
+                    <li>Gommettes de couleur</li>
+                    <li>Cartes thématiques (sports, nourriture, loisirs)</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Déroulement</h4>
+                <ol>
+                    <li><strong>Kinesthésique :</strong> Se déplacer vers les coins</li>
+                    <li><strong>Visuel :</strong> Coller gommettes sur graphique</li>
+                    <li><strong>Auditif :</strong> Justifier ses choix oralement</li>
+                    <li><strong>Social :</strong> Interviewer 3 camarades</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <div class="culture-card mt-3">
+        <h3>🌍 Capsule culturelle : Les goûts des jeunes francophones canadiens</h3>
+        <div class="grid grid-3">
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">🎵</div>
+                <strong>Musique</strong>
+                <p style="font-size: 9pt;">Charlotte Cardin, Loud, Les Cowboys Fringants</p>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">🏒</div>
+                <strong>Sports</strong>
+                <p style="font-size: 9pt;">Hockey, Lacrosse, Basketball</p>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">🍽️</div>
+                <strong>Cuisine</strong>
+                <p style="font-size: 9pt;">Poutine, Tourtière, Sirop d'érable</p>
+            </div>
+        </div>
+        <p class="text-center mt-2" style="font-size: 10pt;">
+            <em>Discussion : Quels sont les goûts similaires/différents dans votre région?</em>
+        </p>
+    </div>
+    
+    <table class="mt-3">
+        <thead>
+            <tr>
+                <th>Jour</th>
+                <th>Focus</th>
+                <th>Vocabulaire clé</th>
+                <th>Production attendue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Lundi</td>
+                <td>Nourriture</td>
+                <td>pizza, chocolat, légumes, fruits</td>
+                <td>"J'aime la pizza"</td>
+            </tr>
+            <tr>
+                <td>Mardi</td>
+                <td>Sports</td>
+                <td>soccer, natation, danse, vélo</td>
+                <td>"J'adore le soccer"</td>
+            </tr>
+            <tr>
+                <td>Mercredi</td>
+                <td>Matières</td>
+                <td>maths, français, arts, sciences</td>
+                <td>"Je n'aime pas les maths"</td>
+            </tr>
+            <tr>
+                <td>Jeudi</td>
+                <td>Loisirs</td>
+                <td>lire, dessiner, jouer, regarder</td>
+                <td>"J'aime lire parce que..."</td>
+            </tr>
+            <tr>
+                <td>Vendredi</td>
+                <td>Synthèse</td>
+                <td>Révision complète</td>
+                <td>Présentation "Mes 5 préférences"</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Page 5: Weather Module -->
+<div class="page">
+    <h2>☁️ Semaine 3 : Météo et Temps</h2>
+    
+    <div class="shadow-card">
+        <h3 class="text-primary">Station Météo Interactive</h3>
+        
+        <div class="grid grid-4 mt-2">
+            <div class="card text-center">
+                <span style="font-size: 30pt;">☀️</span>
+                <p><strong>Il fait soleil</strong></p>
+                <small>Il fait chaud</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">🌧️</span>
+                <p><strong>Il pleut</strong></p>
+                <small>Il fait frais</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">❄️</span>
+                <p><strong>Il neige</strong></p>
+                <small>Il fait froid</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">☁️</span>
+                <p><strong>C'est nuageux</strong></p>
+                <small>Il fait gris</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">🌪️</span>
+                <p><strong>Il y a du vent</strong></p>
+                <small>C'est venteux</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">🌈</span>
+                <p><strong>Arc-en-ciel</strong></p>
+                <small>Après la pluie</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">⛈️</span>
+                <p><strong>Il y a de l'orage</strong></p>
+                <small>C'est orageux</small>
+            </div>
+            <div class="card text-center">
+                <span style="font-size: 30pt;">🌫️</span>
+                <p><strong>Il y a du brouillard</strong></p>
+                <small>C'est brumeux</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid grid-2 mt-3">
+        <div class="feature-card">
+            <h3>🌡️ Températures</h3>
+            <div class="progress-bar mb-2">
+                <div class="progress-fill" style="width: 30%; background: linear-gradient(90deg, #2196F3, #03A9F4);">
+                    -10°C à 0°C
+                </div>
+            </div>
+            <p class="text-muted" style="font-size: 10pt;">Il fait très froid</p>
+            
+            <div class="progress-bar mb-2">
+                <div class="progress-fill" style="width: 40%; background: linear-gradient(90deg, #4CAF50, #8BC34A);">
+                    0°C à 15°C
+                </div>
+            </div>
+            <p class="text-muted" style="font-size: 10pt;">Il fait frais</p>
+            
+            <div class="progress-bar mb-2">
+                <div class="progress-fill" style="width: 60%; background: linear-gradient(90deg, #FFC107, #FF9800);">
+                    15°C à 25°C
+                </div>
+            </div>
+            <p class="text-muted" style="font-size: 10pt;">Il fait bon</p>
+            
+            <div class="progress-bar mb-2">
+                <div class="progress-fill" style="width: 80%; background: linear-gradient(90deg, #FF5722, #F44336);">
+                    25°C à 35°C
+                </div>
+            </div>
+            <p class="text-muted" style="font-size: 10pt;">Il fait chaud</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>👔 Vêtements adaptés</h3>
+            <table style="font-size: 10pt;">
+                <tr>
+                    <td>☀️ Soleil</td>
+                    <td>T-shirt, short, lunettes de soleil</td>
+                </tr>
+                <tr>
+                    <td>🌧️ Pluie</td>
+                    <td>Imperméable, parapluie, bottes</td>
+                </tr>
+                <tr>
+                    <td>❄️ Neige</td>
+                    <td>Manteau, écharpe, gants, bonnet</td>
+                </tr>
+                <tr>
+                    <td>🌤️ Variable</td>
+                    <td>Cardigan, jean, chaussures fermées</td>
+                </tr>
+            </table>
+            
+            <div class="frame mt-2">
+                <span class="frame-number">A2</span>
+                Aujourd'hui, je porte _____ parce qu'il fait _____.
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h4>📱 Extension numérique</h4>
+        <p>Créer un bulletin météo vidéo de 30 secondes en français. Utiliser les expressions apprises et présenter la météo de 3 villes canadiennes : Montréal, Québec et Vancouver.</p>
+    </div>
+</div>
+
+<!-- Page 6: Emotions -->
+<div class="page">
+    <h2>😊 Semaine 4 : Émotions et Sentiments</h2>
+    
+    <div class="shadow-card">
+        <h3>Roue des émotions</h3>
+        
+        <div class="grid grid-3">
+            <div class="text-center">
+                <div style="font-size: 40pt;">😊</div>
+                <strong>Content(e)</strong>
+                <div class="frame mt-1">Je suis content(e)</div>
+                <small>heureux, joyeux, ravi</small>
+            </div>
+            <div class="text-center">
+                <div style="font-size: 40pt;">😢</div>
+                <strong>Triste</strong>
+                <div class="frame mt-1">Je suis triste</div>
+                <small>malheureux, déçu, mélancolique</small>
+            </div>
+            <div class="text-center">
+                <div style="font-size: 40pt;">😤</div>
+                <strong>En colère</strong>
+                <div class="frame mt-1">Je suis en colère</div>
+                <small>fâché, irrité, frustré</small>
+            </div>
+            <div class="text-center">
+                <div style="font-size: 40pt;">😰</div>
+                <strong>Inquiet(ète)</strong>
+                <div class="frame mt-1">Je suis inquiet</div>
+                <small>anxieux, stressé, nerveux</small>
+            </div>
+            <div class="text-center">
+                <div style="font-size: 40pt;">😴</div>
+                <strong>Fatigué(e)</strong>
+                <div class="frame mt-1">Je suis fatigué(e)</div>
+                <small>épuisé, las, somnolent</small>
+            </div>
+            <div class="text-center">
+                <div style="font-size: 40pt;">🤗</div>
+                <strong>Excité(e)</strong>
+                <div class="frame mt-1">Je suis excité(e)</div>
+                <small>enthousiaste, motivé, énergique</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-warning mt-3">
+        <h3>🎯 Stratégies de régulation émotionnelle</h3>
+        <div class="grid grid-2">
+            <div>
+                <h4>Quand je suis stressé(e)...</h4>
+                <ul style="font-size: 10pt;">
+                    <li>Je respire profondément</li>
+                    <li>Je compte jusqu'à 10</li>
+                    <li>Je parle à un ami</li>
+                    <li>Je fais une pause</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Phrases utiles</h4>
+                <div class="frame">J'ai besoin d'aide</div>
+                <div class="frame">Ça va mieux maintenant</div>
+                <div class="frame">Je me sens _____ parce que _____</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-prof">
+        <strong>Note SEL (Social-Emotional Learning):</strong> Cette semaine intègre l'apprentissage socio-émotionnel. Créer un espace sûr où les élèves peuvent exprimer leurs émotions sans jugement. Modéliser la vulnérabilité en partageant vos propres sentiments.
+    </div>
+</div>
+
+<!-- Page 7: Past Tense Week -->
+<div class="page">
+    <h2>📆 Semaine 5 : Raconter au Passé</h2>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Structure de base : Passé composé avec AVOIR</h4>
+                <div class="grid grid-3">
+                    <div class="frame">J'ai mangé</div>
+                    <div class="frame">J'ai joué</div>
+                    <div class="frame">J'ai regardé</div>
+                    <div class="frame">J'ai fait</div>
+                    <div class="frame">J'ai vu</div>
+                    <div class="frame">J'ai lu</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4>Structure avec ÊTRE (verbes de mouvement)</h4>
+                <div class="grid grid-3">
+                    <div class="frame">Je suis allé(e)</div>
+                    <div class="frame">Je suis venu(e)</div>
+                    <div class="frame">Je suis parti(e)</div>
+                    <div class="frame">Je suis resté(e)</div>
+                    <div class="frame">Je suis arrivé(e)</div>
+                    <div class="frame">Je suis rentré(e)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>📝 Mon journal de week-end</h3>
+        <div class="grid grid-2">
+            <div>
+                <h4>Samedi</h4>
+                <div class="frame">Le matin, j'ai _______</div>
+                <div class="frame">L'après-midi, je suis allé(e) _______</div>
+                <div class="frame">Le soir, j'ai _______</div>
+            </div>
+            <div>
+                <h4>Dimanche</h4>
+                <div class="frame">D'abord, j'ai _______</div>
+                <div class="frame">Ensuite, j'ai _______</div>
+                <div class="frame">Finalement, j'ai _______</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-success mt-3">
+        <h3>🎬 Connecteurs temporels</h3>
+        <div class="flex" style="justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+            <span class="badge badge-light">D'abord</span>
+            <span class="badge badge-light">Ensuite</span>
+            <span class="badge badge-light">Puis</span>
+            <span class="badge badge-light">Après</span>
+            <span class="badge badge-light">Finalement</span>
+            <span class="badge badge-light">Hier</span>
+            <span class="badge badge-light">Ce matin</span>
+            <span class="badge badge-light">La semaine dernière</span>
+        </div>
+    </div>
+</div>
+
+<!-- Page 8: Essential Expressions Poster - Enhanced -->
+<div class="page">
+    <h1 style="text-align: center; font-size: 36pt; color: var(--primary);">
+        🗣️ En classe, je parle français !
+    </h1>
+    
+    <div class="expression-grid" style="font-size: 15pt;">
+        <div class="expression-item">
+            <span class="expression-icon">👋</span>
+            <div>
+                <strong>Bonjour / Au revoir</strong><br>
+                <small style="color: var(--neutral-600);">Hello / Goodbye</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">🙏</span>
+            <div>
+                <strong>S'il vous plaît</strong><br>
+                <small style="color: var(--neutral-600);">Please</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">😊</span>
+            <div>
+                <strong>Merci (beaucoup)</strong><br>
+                <small style="color: var(--neutral-600);">Thank you (very much)</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">🤷</span>
+            <div>
+                <strong>Pardon / Excusez-moi</strong><br>
+                <small style="color: var(--neutral-600);">Sorry / Excuse me</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">❓</span>
+            <div>
+                <strong>Je ne comprends pas</strong><br>
+                <small style="color: var(--neutral-600);">I don't understand</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">🐌</span>
+            <div>
+                <strong>Plus lentement, SVP</strong><br>
+                <small style="color: var(--neutral-600);">Slower please</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">🔁</span>
+            <div>
+                <strong>Répétez, SVP</strong><br>
+                <small style="color: var(--neutral-600);">Repeat please</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">💭</span>
+            <div>
+                <strong>Comment dit-on...?</strong><br>
+                <small style="color: var(--neutral-600);">How do you say...?</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">🚻</span>
+            <div>
+                <strong>Puis-je aller aux toilettes?</strong><br>
+                <small style="color: var(--neutral-600);">May I go to the bathroom?</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">💧</span>
+            <div>
+                <strong>Puis-je boire de l'eau?</strong><br>
+                <small style="color: var(--neutral-600);">May I drink water?</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">✋</span>
+            <div>
+                <strong>J'ai une question</strong><br>
+                <small style="color: var(--neutral-600);">I have a question</small>
+            </div>
+        </div>
+        <div class="expression-item">
+            <span class="expression-icon">✅</span>
+            <div>
+                <strong>J'ai fini</strong><br>
+                <small style="color: var(--neutral-600);">I'm finished</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ribbon mt-3">Zone 100% Français — French Only Zone</div>
+</div>
+
+<!-- Page 9: Visual Instructions Poster -->
+<div class="page">
+    <h1 style="text-align: center; font-size: 36pt;">📋 Consignes Visuelles</h1>
+    
+    <div class="grid grid-4" style="font-size: 16pt;">
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">👂</div>
+            <strong>Écoute</strong><br>
+            <small>Listen</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">🔁</div>
+            <strong>Répète</strong><br>
+            <small>Repeat</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">📖</div>
+            <strong>Lis</strong><br>
+            <small>Read</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">✏️</div>
+            <strong>Écris</strong><br>
+            <small>Write</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">👀</div>
+            <strong>Regarde</strong><br>
+            <small>Look</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">⭕</div>
+            <strong>Entoure</strong><br>
+            <small>Circle</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">➖</div>
+            <strong>Souligne</strong><br>
+            <small>Underline</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">❌</div>
+            <strong>Barre</strong><br>
+            <small>Cross out</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">✂️</div>
+            <strong>Découpe</strong><br>
+            <small>Cut</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">📎</div>
+            <strong>Colle</strong><br>
+            <small>Glue</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">🎨</div>
+            <strong>Dessine</strong><br>
+            <small>Draw</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">🖍️</div>
+            <strong>Colorie</strong><br>
+            <small>Color</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">🤫</div>
+            <strong>Chuchote</strong><br>
+            <small>Whisper</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">👥</div>
+            <strong>À deux</strong><br>
+            <small>In pairs</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">🔄</div>
+            <strong>Change</strong><br>
+            <small>Switch</small>
+        </div>
+        <div class="card text-center shadow-card">
+            <div style="font-size: 36pt;">⏱️</div>
+            <strong>Chrono!</strong><br>
+            <small>Timer!</small>
+        </div>
+    </div>
+</div>
+
+<!-- Page 10: Metacognitive Strategies -->
+<div class="page">
+    <h2>🧠 Stratégies Métacognitives</h2>
+    
+    <div class="shadow-card">
+        <h3 class="text-primary">Comment j'apprends mieux le français</h3>
+        
+        <div class="grid grid-2 mt-3">
+            <div class="card-accent">
+                <h4>🎯 Avant l'activité</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Je prépare mon cerveau :</strong> Je pense en français</li>
+                    <li><strong>Je fixe un objectif :</strong> "Aujourd'hui, je vais..."</li>
+                    <li><strong>J'active mes connaissances :</strong> Qu'est-ce que je sais déjà?</li>
+                    <li><strong>Je prédis :</strong> De quoi va-t-on parler?</li>
+                </ul>
+            </div>
+            
+            <div class="card-accent">
+                <h4>🔄 Pendant l'activité</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Je fais des liens :</strong> Ça ressemble à...</li>
+                    <li><strong>J'utilise le contexte :</strong> Je devine avec les indices</li>
+                    <li><strong>Je prends des risques :</strong> J'essaie même si c'est difficile</li>
+                    <li><strong>Je demande de l'aide :</strong> "Comment dit-on...?"</li>
+                </ul>
+            </div>
+            
+            <div class="card-accent">
+                <h4>✅ Après l'activité</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Je réfléchis :</strong> Qu'est-ce que j'ai appris?</li>
+                    <li><strong>Je m'évalue :</strong> Qu'est-ce qui était facile/difficile?</li>
+                    <li><strong>Je célèbre :</strong> Je reconnais mes progrès</li>
+                    <li><strong>Je planifie :</strong> Qu'est-ce que je veux améliorer?</li>
+                </ul>
+            </div>
+            
+            <div class="card-accent">
+                <h4>💡 Stratégies de mémorisation</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Répétition espacée :</strong> Je révise 1-3-7-21 jours</li>
+                    <li><strong>Associations :</strong> Je crée des images mentales</li>
+                    <li><strong>Mnémoniques :</strong> Je fais des phrases drôles</li>
+                    <li><strong>Gestes :</strong> J'associe mots et mouvements</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>🎨 Mon style d'apprentissage</h3>
+        <div class="grid grid-3">
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">👁️</div>
+                <strong>Visuel</strong>
+                <p style="font-size: 9pt;">J'apprends avec des images, couleurs, cartes mentales</p>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">👂</div>
+                <strong>Auditif</strong>
+                <p style="font-size: 9pt;">J'apprends en écoutant, répétant, chantant</p>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">🤸</div>
+                <strong>Kinesthésique</strong>
+                <p style="font-size: 9pt;">J'apprends en bougeant, touchant, faisant</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-prof">
+        <strong>Pour l'enseignant :</strong> Enseigner explicitement ces stratégies. Les modéliser régulièrement. Faire réfléchir les élèves sur leur processus d'apprentissage (métacognition).
+    </div>
+</div>
+
+<!-- Page 11: Francophone Culture -->
+<div class="page">
+    <h2>🌍 Coin Culture Francophone</h2>
+    
+    <div class="culture-card">
+        <h3>📅 Calendrier des Fêtes Francophones Canadiennes</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Mois</th>
+                    <th>Fête</th>
+                    <th>Région</th>
+                    <th>Activité classe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Septembre</td>
+                    <td>Rentrée scolaire</td>
+                    <td>Canada</td>
+                    <td>Comparer les fournitures scolaires</td>
+                </tr>
+                <tr>
+                    <td>Octobre</td>
+                    <td>Action de grâce</td>
+                    <td>Canada</td>
+                    <td>Vocabulaire de la gratitude</td>
+                </tr>
+                <tr>
+                    <td>Décembre</td>
+                    <td>Noël au Québec</td>
+                    <td>Québec</td>
+                    <td>Traditions du réveillon</td>
+                </tr>
+                <tr>
+                    <td>Janvier</td>
+                    <td>Jour de l'An</td>
+                    <td>Canada</td>
+                    <td>Résolutions en français</td>
+                </tr>
+                <tr>
+                    <td>Février</td>
+                    <td>Carnaval de Québec</td>
+                    <td>Québec</td>
+                    <td>Bonhomme Carnaval et activités d'hiver</td>
+                </tr>
+                <tr>
+                    <td>Mars</td>
+                    <td>Francophonie</td>
+                    <td>Mondial</td>
+                    <td>Carte du Canada francophone</td>
+                </tr>
+                <tr>
+                    <td>Avril</td>
+                    <td>Poisson d'avril</td>
+                    <td>Québec</td>
+                    <td>Blagues et dessins</td>
+                </tr>
+                <tr>
+                    <td>Mai</td>
+                    <td>Fête des Mères</td>
+                    <td>Canada</td>
+                    <td>Poème ou carte en français</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="grid grid-3 mt-3">
+        <div class="shadow-card text-center">
+            <h4>🎵 Chanson du mois</h4>
+            <p><strong>"Savez-vous planter les choux"</strong></p>
+            <small>Comptine traditionnelle</small>
+            <div class="frame mt-2">À la mode, à la mode...</div>
+        </div>
+        <div class="shadow-card text-center">
+            <h4>🎬 Film/Dessin animé</h4>
+            <p><strong>"Les Aventures de Tintin"</strong></p>
+            <small>BD belge classique</small>
+            <div class="frame mt-2">Mille sabords!</div>
+        </div>
+        <div class="shadow-card text-center">
+            <h4>🍴 Recette facile</h4>
+            <p><strong>Crêpes simples</strong></p>
+            <small>France</small>
+            <div class="frame mt-2">Farine, œufs, lait...</div>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>🗺️ Tour du Monde Francophone</h3>
+        <p><strong>29 pays</strong> ont le français comme langue officielle</p>
+        <p><strong>300+ millions</strong> de francophones dans le monde</p>
+        <p><strong>5 continents</strong> : Afrique, Amérique, Asie, Europe, Océanie</p>
+        <div class="badge badge-primary">France</div>
+        <div class="badge badge-accent">Canada</div>
+        <div class="badge badge-success">Sénégal</div>
+        <div class="badge badge-warning">Belgique</div>
+        <div class="badge badge-light">Suisse</div>
+        <div class="badge badge-primary">Maroc</div>
+        <div class="badge badge-accent">Haïti</div>
+        <div class="badge badge-success">Madagascar</div>
+    </div>
+</div>
+
+<!-- Pages 12-13: Tu préfères Game Cards - Enhanced -->
+<div class="page">
+    <h2>🎲 Jeu "Tu préfères...?" Premium</h2>
+    
+    <div class="shadow-card mb-3">
+        <h3>📋 Règles et Variations</h3>
+        <div class="grid grid-3">
+            <div>
+                <h4>🎮 Version Base (A1)</h4>
+                <ul style="font-size: 10pt;">
+                    <li>2 joueurs face à face</li>
+                    <li>4 cartes chacun</li>
+                    <li>Réponse simple : "Je préfère..."</li>
+                    <li>2-3 minutes par tour</li>
+                </ul>
+            </div>
+            <div>
+                <h4>⚡ Version Speed (A1+)</h4>
+                <ul style="font-size: 10pt;">
+                    <li>Cercle de classe</li>
+                    <li>30 secondes par réponse</li>
+                    <li>Passer la carte au suivant</li>
+                    <li>Élimination si hésitation</li>
+                </ul>
+            </div>
+            <div>
+                <h4>🏆 Version Débat (A2)</h4>
+                <ul style="font-size: 10pt;">
+                    <li>Équipes de 4</li>
+                    <li>Justifier avec "parce que"</li>
+                    <li>Voter pour meilleure justification</li>
+                    <li>Points bonus créativité</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cut-grid">
+        <div class="cut-card">
+            <small class="badge badge-primary">Nourriture</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🍫 ou 🍦</div>
+            <p>le chocolat ou<br>la crème glacée?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-success">Sports</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">⚽ ou 🏀</div>
+            <p>le soccer ou<br>le basketball?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Nature</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🌊 ou ⛰️</div>
+            <p>la mer ou<br>la montagne?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-accent">Loisirs</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">📚 ou 🎬</div>
+            <p>lire un livre ou<br>regarder un film?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-primary">Animaux</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🐱 ou 🐶</div>
+            <p>les chats ou<br>les chiens?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Saisons</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">☀️ ou ❄️</div>
+            <p>l'été ou<br>l'hiver?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-primary">Nourriture</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🍕 ou 🍝</div>
+            <p>la pizza ou<br>les pâtes?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-accent">Talents</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">💃 ou 🎤</div>
+            <p>danser ou<br>chanter?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Temps</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🌅 ou 🌙</div>
+            <p>le matin ou<br>le soir?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-success">École</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">➕ ou 📝</div>
+            <p>les maths ou<br>le français?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-primary">Couleurs</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">❤️ ou 💙</div>
+            <p>le rouge ou<br>le bleu?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Santé</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🍎 ou 🥕</div>
+            <p>les fruits ou<br>les légumes?</p>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+    <div class="cut-grid">
+        <div class="cut-card">
+            <small class="badge badge-accent">Art</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🎨 ou 🖍️</div>
+            <p>dessiner ou<br>colorier?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-success">Transport</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🚴 ou 🛴</div>
+            <p>le vélo ou<br>la trottinette?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-accent">Jeux</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🎮 ou 🎲</div>
+            <p>les jeux vidéo ou<br>les jeux de société?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-primary">Goûts</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🍭 ou 🧂</div>
+            <p>le sucré ou<br>le salé?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Pouvoirs</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">👻 ou 🦅</div>
+            <p>être invisible ou<br>pouvoir voler?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-accent">Ambiance</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🎵 ou 🤫</div>
+            <p>la musique ou<br>le silence?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-success">Activités</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🏃 ou 🎭</div>
+            <p>le sport ou<br>l'art?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Vacances</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">⛺ ou 🏨</div>
+            <p>le camping ou<br>l'hôtel?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-primary">Lecture</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">📚 ou 📖</div>
+            <p>les BD ou<br>les romans?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-accent">Repas</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">👨‍🍳 ou 📱</div>
+            <p>cuisiner ou<br>commander?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-warning">Boissons</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">☕ ou 🥤</div>
+            <p>le thé ou<br>le chocolat chaud?</p>
+        </div>
+        <div class="cut-card">
+            <small class="badge badge-success">Style</small>
+            <p><strong>Tu préfères...</strong></p>
+            <div class="emoji">🎁 ou 📅</div>
+            <p>les surprises ou<br>tout planifier?</p>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🎯 Extensions créatives</h3>
+        <div class="grid grid-2">
+            <div>
+                <h4>Version digitale</h4>
+                <p style="font-size: 10pt;">Créer un Kahoot avec ces questions pour révision interactive</p>
+            </div>
+            <div>
+                <h4>Production écrite</h4>
+                <p style="font-size: 10pt;">Écrire 5 nouvelles cartes "Tu préfères" personnalisées</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 14: Role Play Market -->
+<div class="page">
+    <h2>🛒 Jeu de Rôle : Au Marché</h2>
+    
+    <div class="shadow-card">
+        <h3>Scénarios progressifs</h3>
+        
+        <div class="grid grid-2">
+            <div class="card-success">
+                <h4>🥖 Niveau A1 : Boulangerie</h4>
+                <div class="frame">- Bonjour!</div>
+                <div class="frame">- Je voudrais un croissant, SVP.</div>
+                <div class="frame">- C'est combien?</div>
+                <div class="frame">- Voici 2 dollars.</div>
+                <div class="frame">- Merci, au revoir!</div>
+                <strong>Prix :</strong> Croissant 1,50CAD | Baguette 1CAD
+            </div>
+            
+            <div class="card-warning">
+                <h4>🍎 Niveau A2 : Fruits et Légumes</h4>
+                <div class="frame">- Bonjour, vous avez des pommes?</div>
+                <div class="frame">- Oui, elles sont très fraîches!</div>
+                <div class="frame">- Je voudrais 2 livres, s'il vous plaît.</div>
+                <div class="frame">- Et avec ceci?</div>
+                <div class="frame">- C'est tout, merci. Ça fait combien?</div>
+                <strong>Vocabulaire :</strong> livre, fraîches, mûres, bio
+            </div>
+        </div>
+    </div>
+    
+    <div class="feature-card mt-3">
+        <h3>🎭 Cartes de rôle</h3>
+        <div class="grid grid-3">
+            <div class="text-center">
+                <div class="icon-wrapper icon-primary icon-lg">🧑‍🍳</div>
+                <strong>Le vendeur</strong>
+                <ul style="font-size: 9pt; text-align: left;">
+                    <li>Accueille poliment</li>
+                    <li>Propose ses produits</li>
+                    <li>Donne le prix</li>
+                    <li>Rend la monnaie</li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-accent icon-lg">🛍️</div>
+                <strong>Le client</strong>
+                <ul style="font-size: 9pt; text-align: left;">
+                    <li>Salue</li>
+                    <li>Demande des produits</li>
+                    <li>Demande le prix</li>
+                    <li>Paie et remercie</li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <div class="icon-wrapper icon-success icon-lg">👥</div>
+                <strong>L'observateur</strong>
+                <ul style="font-size: 9pt; text-align: left;">
+                    <li>Écoute attentivement</li>
+                    <li>Note les expressions</li>
+                    <li>Donne du feedback</li>
+                    <li>Encourage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <table class="mt-3">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix A1</th>
+                <th>Prix A2</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>🥖 Baguette</td>
+                <td>1CAD</td>
+                <td>0,95CAD</td>
+                <td>une</td>
+            </tr>
+            <tr>
+                <td>🥐 Croissant</td>
+                <td>2CAD</td>
+                <td>1,50CAD</td>
+                <td>un/deux</td>
+            </tr>
+            <tr>
+                <td>🍎 Pommes</td>
+                <td>3CAD</td>
+                <td>2,50CAD/kg</td>
+                <td>une livre</td>
+            </tr>
+            <tr>
+                <td>🧀 Fromage</td>
+                <td>5CAD</td>
+                <td>4,80CAD</td>
+                <td>200g</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Page 15: Speed Dating Linguistique -->
+<div class="page">
+    <h2>💬 Speed Dating Linguistique</h2>
+    
+    <div class="shadow-card">
+        <h3>Organisation de l'activité</h3>
+        <div class="grid grid-2">
+            <div>
+                <h4>⏱️ Timing</h4>
+                <ul>
+                    <li>2 minutes par rencontre</li>
+                    <li>30 secondes pour changer</li>
+                    <li>10-12 rotations totales</li>
+                    <li>Durée totale : 30 minutes</li>
+                </ul>
+            </div>
+            <div>
+                <h4>🪑 Disposition</h4>
+                <ul>
+                    <li>2 rangées face à face</li>
+                    <li>Rangée A fixe</li>
+                    <li>Rangée B mobile</li>
+                    <li>Signal sonore pour rotation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid grid-3 mt-3">
+        <div class="card">
+            <h4>Round 1-4 : Présentation</h4>
+            <div class="frame">Comment tu t'appelles?</div>
+            <div class="frame">Quel âge as-tu?</div>
+            <div class="frame">D'où viens-tu?</div>
+        </div>
+        <div class="card">
+            <h4>Round 5-8 : Goûts</h4>
+            <div class="frame">Qu'est-ce que tu aimes?</div>
+            <div class="frame">Tu préfères quoi?</div>
+            <div class="frame">Ta matière préférée?</div>
+        </div>
+        <div class="card">
+            <h4>Round 9-12 : Weekend</h4>
+            <div class="frame">Qu'est-ce que tu as fait?</div>
+            <div class="frame">Tu es allé(e) où?</div>
+            <div class="frame">C'était comment?</div>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>📝 Fiche de suivi</h3>
+        <p>Chaque élève note 1 information intéressante par personne rencontrée.</p>
+        <p>À la fin : Présenter 3 camarades à la classe avec les infos collectées.</p>
+    </div>
+</div>
+
+<!-- Page 16: Progressive Sentence Frames -->
+<div class="page">
+    <h2>💬 Sentence Frames Progressifs</h2>
+    
+    <div class="shadow-card">
+        <h3>Échafaudage linguistique adaptatif</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Niveau 1 : Support maximal (100%)</h4>
+                    <div class="frame">
+                        <span class="frame-number">Semaine 1-2</span>
+                        Je m'appelle <span style="color: var(--accent); font-weight: bold;">_______</span>. J'ai <span style="color: var(--accent); font-weight: bold;">_______</span> ans.
+                    </div>
+                    <p style="font-size: 10pt; color: var(--neutral-600);">
+                        ✓ Structure complète fournie | ✓ Mots à compléter en évidence
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Niveau 2 : Support partiel (75%)</h4>
+                    <div class="frame">
+                        <span class="frame-number">Semaine 3-4</span>
+                        Je _______ et j'habite _______. Ma famille _______.
+                    </div>
+                    <p style="font-size: 10pt; color: var(--neutral-600);">
+                        ✓ Début de phrase donné | ✓ Plus de liberté dans les réponses
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Niveau 3 : Support minimal (50%)</h4>
+                    <div class="frame">
+                        <span class="frame-number">Semaine 5-6</span>
+                        _______ parce que _______. Aussi, _______.
+                    </div>
+                    <p style="font-size: 10pt; color: var(--neutral-600);">
+                        ✓ Connecteurs fournis | ✓ Construction libre
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Niveau 4 : Autonomie (25%)</h4>
+                    <div class="frame">
+                        <span class="frame-number">Semaine 7-8</span>
+                        [Début libre] + [connecteur] + [suite libre]
+                    </div>
+                    <p style="font-size: 10pt; color: var(--neutral-600);">
+                        ✓ Indices structurels seulement | ✓ Production autonome
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid grid-3 mt-3">
+        <div class="card-accent">
+            <h4>📝 Décrire</h4>
+            <div class="frame">C'est _____</div>
+            <div class="frame">Il/Elle a _____</div>
+            <div class="frame">On peut voir _____</div>
+            <div class="frame">Il y a _____ qui _____</div>
+        </div>
+        
+        <div class="card-accent">
+            <h4>⚖️ Comparer</h4>
+            <div class="frame">_____ est plus _____ que _____</div>
+            <div class="frame">_____ ressemble à _____</div>
+            <div class="frame">La différence entre _____ et _____</div>
+            <div class="frame">Contrairement à _____, _____</div>
+        </div>
+        
+        <div class="card-accent">
+            <h4>💭 Argumenter</h4>
+            <div class="frame">Je pense que _____ parce que _____</div>
+            <div class="frame">D'un côté _____, de l'autre _____</div>
+            <div class="frame">Par exemple, _____</div>
+            <div class="frame">En conclusion, _____</div>
+        </div>
+    </div>
+    
+    <div class="note-prof mt-3">
+        <strong>🎯 Stratégie de retrait progressif :</strong> Observer chaque élève individuellement. Certains seront prêts pour moins de support plus tôt. Différencier le niveau de scaffolding selon les besoins, pas selon un calendrier rigide.
+    </div>
+</div>
+
+<!-- Page 17: Connectors and Transitions -->
+<div class="page">
+    <h2>🔗 Connecteurs et Transitions</h2>
+    
+    <div class="grid grid-2">
+        <div class="shadow-card">
+            <h3 class="text-primary">Connecteurs temporels</h3>
+            <div class="grid grid-2" style="font-size: 10pt;">
+                <div>
+                    <strong>Séquence</strong>
+                    <div class="badge badge-light">D'abord</div>
+                    <div class="badge badge-light">Ensuite</div>
+                    <div class="badge badge-light">Puis</div>
+                    <div class="badge badge-light">Après</div>
+                    <div class="badge badge-light">Finalement</div>
+                </div>
+                <div>
+                    <strong>Fréquence</strong>
+                    <div class="badge badge-primary">Toujours</div>
+                    <div class="badge badge-primary">Souvent</div>
+                    <div class="badge badge-primary">Parfois</div>
+                    <div class="badge badge-primary">Rarement</div>
+                    <div class="badge badge-primary">Jamais</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shadow-card">
+            <h3 class="text-accent">Connecteurs logiques</h3>
+            <div class="grid grid-2" style="font-size: 10pt;">
+                <div>
+                    <strong>Cause</strong>
+                    <div class="badge badge-accent">Parce que</div>
+                    <div class="badge badge-accent">Car</div>
+                    <div class="badge badge-accent">Puisque</div>
+                    <div class="badge badge-accent">Grâce à</div>
+                    <div class="badge badge-accent">À cause de</div>
+                </div>
+                <div>
+                    <strong>Opposition</strong>
+                    <div class="badge badge-warning">Mais</div>
+                    <div class="badge badge-warning">Cependant</div>
+                    <div class="badge badge-warning">Pourtant</div>
+                    <div class="badge badge-warning">Malgré</div>
+                    <div class="badge badge-warning">Au contraire</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="feature-card mt-3">
+        <h3>🎮 Jeu des connecteurs</h3>
+        <div class="grid grid-3">
+            <div class="card text-center">
+                <strong>Niveau 1</strong>
+                <p style="font-size: 10pt;">J'aime le chocolat. _____, je n'aime pas la vanille.</p>
+                <div class="badge badge-success mt-1">MAIS</div>
+            </div>
+            <div class="card text-center">
+                <strong>Niveau 2</strong>
+                <p style="font-size: 10pt;">_____ il pleut, je prends mon parapluie.</p>
+                <div class="badge badge-success mt-1">PARCE QUE</div>
+            </div>
+            <div class="card text-center">
+                <strong>Niveau 3</strong>
+                <p style="font-size: 10pt;">Je me lève. _____, je prends mon petit-déjeuner.</p>
+                <div class="badge badge-success mt-1">ENSUITE</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>📚 Exemples en contexte</h3>
+        <table style="font-size: 10pt;">
+            <thead>
+                <tr>
+                    <th>Connecteur</th>
+                    <th>Exemple A1</th>
+                    <th>Exemple A2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Et</strong></td>
+                    <td>J'aime le foot et le basket.</td>
+                    <td>Je joue au foot et je fais aussi de la natation.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ou</strong></td>
+                    <td>Tu veux du jus ou de l'eau?</td>
+                    <td>On peut aller au cinéma ou rester à la maison.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mais</strong></td>
+                    <td>J'aime l'école mais pas les devoirs.</td>
+                    <td>Je voudrais sortir, mais il pleut beaucoup.</td>
+                </tr>
+                <tr>
+                    <td><strong>Parce que</strong></td>
+                    <td>Je suis content parce que c'est vendredi.</td>
+                    <td>Je n'ai pas fait mes devoirs parce que j'étais malade.</td>
+                </tr>
+                <tr>
+                    <td><strong>Donc</strong></td>
+                    <td>Il pleut, donc je reste.</td>
+                    <td>J'ai étudié, donc je suis prêt pour le test.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Page 18: Detailed Observation Grids -->
+<div class="page">
+    <h2>📊 Grilles d'Observation Détaillées</h2>
+    
+    <div class="shadow-card">
+        <h3>Grille d'évaluation formative hebdomadaire</h3>
+        <table style="font-size: 9pt;">
+            <thead>
+                <tr>
+                    <th>Compétence</th>
+                    <th>Indicateurs observables</th>
+                    <th>Non acquis</th>
+                    <th>En cours</th>
+                    <th>Acquis</th>
+                    <th>Dépassé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Production orale</strong></td>
+                    <td>
+                        • Prononciation claire<br>
+                        • Fluidité<br>
+                        • Vocabulaire approprié
+                    </td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                </tr>
+                <tr>
+                    <td><strong>Compréhension orale</strong></td>
+                    <td>
+                        • Suit les consignes<br>
+                        • Comprend les questions<br>
+                        • Réagit appropriément
+                    </td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                </tr>
+                <tr>
+                    <td><strong>Interaction</strong></td>
+                    <td>
+                        • Initie la conversation<br>
+                        • Maintient l'échange<br>
+                        • Pose des questions
+                    </td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                </tr>
+                <tr>
+                    <td><strong>Stratégies</strong></td>
+                    <td>
+                        • Utilise les gestes<br>
+                        • Demande de l'aide<br>
+                        • S'auto-corrige
+                    </td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                </tr>
+                <tr>
+                    <td><strong>Attitude</strong></td>
+                    <td>
+                        • Effort soutenu<br>
+                        • Prise de risque<br>
+                        • Collaboration
+                    </td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                    <td class="check-cell"><div class="check-box"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="grid grid-2 mt-3">
+        <div class="card-success">
+            <h4>📝 Notes d'observation</h4>
+            <div style="border: 1px dashed var(--neutral-400); height: 100px; border-radius: var(--radius); background: var(--neutral-200);"></div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                <strong>Points forts :</strong> _________________<br>
+                <strong>À travailler :</strong> _________________<br>
+                <strong>Prochaines étapes :</strong> _________________
+            </p>
+        </div>
+        
+        <div class="card-warning">
+            <h4>🎯 Objectifs individualisés</h4>
+            <div class="frame">Cette semaine, [nom] va...</div>
+            <ul style="font-size: 10pt;">
+                <li>☐ Utiliser 3 nouveaux mots</li>
+                <li>☐ Poser 2 questions en français</li>
+                <li>☐ Justifier avec "parce que"</li>
+                <li>☐ Parler 1 minute sans arrêt</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>📈 Progression trimestrielle</h3>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%;">Trimestre 1</div>
+        </div>
+        <p style="font-size: 9pt;">Compétences visées : Se présenter | Exprimer ses goûts | Décrire son environnement</p>
+        
+        <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 0%;">Trimestre 2</div>
+        </div>
+        <p style="font-size: 9pt;">Compétences visées : Raconter au passé | Faire des comparaisons | Donner son opinion</p>
+        
+        <div class="progress-bar mt-2">
+            <div class="progress-fill" style="width: 0%;">Trimestre 3</div>
+        </div>
+        <p style="font-size: 9pt;">Compétences visées : Planifier | Argumenter | Présenter un projet</p>
+    </div>
+</div>
+
+<!-- Page 19: CEFR Student Portfolio -->
+<div class="page">
+    <h2>📁 Mon Portfolio CECR</h2>
+    
+    <div class="shadow-card">
+        <h3>Mes informations</h3>
+        <div class="grid grid-2">
+            <div>
+                <p><strong>Nom :</strong> _______________________</p>
+                <p><strong>Classe :</strong> _______________________</p>
+            </div>
+            <div>
+                <p><strong>Année scolaire :</strong> 2025-2026</p>
+                <p><strong>Niveau actuel :</strong> ☐ A1 ☐ A1+ ☐ A2</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="feature-card mt-3">
+        <h3>🌟 Mes réussites</h3>
+        <table style="font-size: 10pt;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>J'ai réussi à...</th>
+                    <th>Niveau</th>
+                    <th>Preuve</th>
+                    <th>Signature prof</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>___/___</td>
+                    <td>Me présenter en 5 phrases</td>
+                    <td>A1</td>
+                    <td>☐ Audio ☐ Vidéo ☐ Écrit</td>
+                    <td>_______</td>
+                </tr>
+                <tr>
+                    <td>___/___</td>
+                    <td>Commander au restaurant</td>
+                    <td>A1</td>
+                    <td>☐ Audio ☐ Vidéo ☐ Écrit</td>
+                    <td>_______</td>
+                </tr>
+                <tr>
+                    <td>___/___</td>
+                    <td>Décrire ma famille</td>
+                    <td>A1+</td>
+                    <td>☐ Audio ☐ Vidéo ☐ Écrit</td>
+                    <td>_______</td>
+                </tr>
+                <tr>
+                    <td>___/___</td>
+                    <td>Raconter mon weekend</td>
+                    <td>A2</td>
+                    <td>☐ Audio ☐ Vidéo ☐ Écrit</td>
+                    <td>_______</td>
+                </tr>
+                <tr>
+                    <td>___/___</td>
+                    <td>Écrire une carte postale</td>
+                    <td>A2</td>
+                    <td>☐ Audio ☐ Vidéo ☐ Écrit</td>
+                    <td>_______</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="grid grid-2 mt-3">
+        <div class="card-accent">
+            <h4>🎯 Mes objectifs ce mois</h4>
+            <ol style="font-size: 10pt;">
+                <li>_________________________________</li>
+                <li>_________________________________</li>
+                <li>_________________________________</li>
+            </ol>
+            <div class="frame mt-2">
+                Mon défi personnel : _______________
+            </div>
+        </div>
+        
+        <div class="card-success">
+            <h4>💪 Mes stratégies préférées</h4>
+            <div style="font-size: 10pt;">
+                <p>☐ Répéter à voix haute</p>
+                <p>☐ Faire des gestes</p>
+                <p>☐ Utiliser des images</p>
+                <p>☐ Écouter des chansons</p>
+                <p>☐ Jouer des rôles</p>
+                <p>☐ Autre : __________</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="culture-card mt-3">
+        <h3>🌍 Mes découvertes culturelles</h3>
+        <div class="grid grid-3">
+            <div>
+                <strong>Pays visité (virtuel) :</strong>
+                <p>_________________</p>
+            </div>
+            <div>
+                <strong>Plat découvert :</strong>
+                <p>_________________</p>
+            </div>
+            <div>
+                <strong>Tradition apprise :</strong>
+                <p>_________________</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 20: Daily Exit Tickets -->
+<div class="page">
+    <h2>🎫 Exit Tickets Quotidiens</h2>
+    
+    <div class="ribbon">À découper - 1 ticket par jour</div>
+    
+    <div class="grid grid-2" style="gap: 0;">
+        <!-- Lundi -->
+        <div style="border: 2px dashed var(--neutral-600); padding: 20px; margin: 5px;">
+            <h4 style="color: var(--primary);">🎫 Lundi - Ticket de sortie</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>Aujourd'hui j'ai appris :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Je peux maintenant dire :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Mon humeur :</strong> 😊 😐 😕</p>
+                
+                <p><strong>J'ai besoin d'aide pour :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+            </div>
+        </div>
+        
+        <!-- Mardi -->
+        <div style="border: 2px dashed var(--neutral-600); padding: 20px; margin: 5px;">
+            <h4 style="color: var(--primary);">🎫 Mardi - Ticket de sortie</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>3 nouveaux mots :</strong></p>
+                <p>1. _____________ 2. _____________ 3. _____________</p>
+                
+                <p><strong>Une phrase complète :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Participation :</strong> ⭐⭐⭐⭐⭐</p>
+                
+                <p><strong>Question pour demain :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+            </div>
+        </div>
+        
+        <!-- Mercredi -->
+        <div style="border: 2px dashed var(--neutral-600); padding: 20px; margin: 5px;">
+            <h4 style="color: var(--primary);">🎫 Mercredi - Ticket de sortie</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>Je sais maintenant :</strong></p>
+                <p>☐ Poser une question ☐ Répondre ☐ Les deux</p>
+                
+                <p><strong>Mon défi aujourd'hui était :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>J'ai réussi :</strong> OUI / NON / PRESQUE</p>
+                
+                <p><strong>Stratégie utilisée :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+            </div>
+        </div>
+        
+        <!-- Jeudi -->
+        <div style="border: 2px dashed var(--neutral-600); padding: 20px; margin: 5px;">
+            <h4 style="color: var(--primary);">🎫 Jeudi - Ticket de sortie</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>Complète avec un connecteur :</strong></p>
+                <p>J'aime le français _______ c'est utile.</p>
+                
+                <p><strong>Auto-évaluation :</strong></p>
+                <p>Prononciation : ☐😊 ☐😐 ☐😕</p>
+                <p>Compréhension : ☐😊 ☐😐 ☐😕</p>
+                
+                <p><strong>Je veux pratiquer :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+            </div>
+        </div>
+        
+        <!-- Vendredi -->
+        <div style="border: 2px dashed var(--neutral-600); padding: 20px; margin: 5px;">
+            <h4 style="color: var(--primary);">🎫 Vendredi - Bilan de la semaine</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>Ma plus grande réussite :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Je peux maintenant :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Note cette semaine :</strong> ⭐⭐⭐⭐⭐</p>
+                
+                <p><strong>Weekend : Je vais pratiquer...</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+            </div>
+        </div>
+        
+        <!-- Ticket Bonus -->
+        <div style="border: 2px dashed var(--accent); padding: 20px; margin: 5px; background: rgba(153,0,0,0.05);">
+            <h4 style="color: var(--accent);">🌟 Ticket BONUS</h4>
+            <div style="font-size: 10pt;">
+                <p><strong>J'ai aidé un(e) camarade à :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>J'ai pris un risque quand :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p><strong>Je suis fier/fière de :</strong></p>
+                <div style="border-bottom: 1px solid var(--neutral-400); margin: 10px 0;"></div>
+                
+                <p style="text-align: center; margin-top: 15px;">
+                    <strong>🏆 BRAVO ! 🏆</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-prof mt-3">
+        <strong>Utilisation :</strong> 5 dernières minutes de cours. Collecter pour suivi individualisé. Répondre aux questions/besoins identifiés le lendemain.
+    </div>
+</div>
+
+<!-- Page 21: Can-Do Self-Assessment Wall -->
+<div class="page">
+    <h2>✅ Mur "Je peux..." - Auto-évaluation CECR</h2>
+    
+    <div class="shadow-card">
+        <h3>Mon tableau de progression A1 → A2</h3>
+        
+        <table style="font-size: 10pt;">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Domaine</th>
+                    <th style="width: 35%;">A1 - Je commence</th>
+                    <th style="width: 35%;">A2 - Je progresse</th>
+                    <th style="width: 10%;">✅</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: rgba(11,83,148,0.05);">
+                    <td><strong>👤 Identité</strong></td>
+                    <td>Je peux dire mon nom, âge, nationalité</td>
+                    <td>Je peux me décrire physiquement et parler de ma personnalité</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>👨‍👩‍👧 Famille</strong></td>
+                    <td>Je peux nommer les membres de ma famille</td>
+                    <td>Je peux décrire ma famille et leurs activités</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr style="background: rgba(11,83,148,0.05);">
+                    <td><strong>🏠 Maison</strong></td>
+                    <td>Je peux dire où j'habite</td>
+                    <td>Je peux décrire ma maison et ma chambre</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🍎 Nourriture</strong></td>
+                    <td>Je peux dire ce que j'aime manger</td>
+                    <td>Je peux commander au restaurant et expliquer mes goûts</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr style="background: rgba(11,83,148,0.05);">
+                    <td><strong>🎯 Loisirs</strong></td>
+                    <td>Je peux nommer mes activités préférées</td>
+                    <td>Je peux expliquer quand et avec qui je fais ces activités</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>📅 Temps</strong></td>
+                    <td>Je peux dire l'heure et la date</td>
+                    <td>Je peux parler de mon emploi du temps et faire des plans</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr style="background: rgba(11,83,148,0.05);">
+                    <td><strong>🛍️ Achats</strong></td>
+                    <td>Je peux demander un prix</td>
+                    <td>Je peux négocier et comparer des produits</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🚌 Transport</strong></td>
+                    <td>Je peux dire comment je viens à l'école</td>
+                    <td>Je peux demander et donner des directions simples</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr style="background: rgba(11,83,148,0.05);">
+                    <td><strong>😷 Santé</strong></td>
+                    <td>Je peux dire comment je me sens</td>
+                    <td>Je peux expliquer un problème de santé simple</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>📖 École</strong></td>
+                    <td>Je peux nommer mes matières</td>
+                    <td>Je peux parler de mes cours et de mes professeurs</td>
+                    <td class="check-cell">
+                        <div class="eval-circle">⭐</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="grid grid-3 mt-3">
+        <div class="card text-center">
+            <h4>🏅 Mes badges</h4>
+            <div class="badge badge-primary">Première présentation</div>
+            <div class="badge badge-success">10 nouveaux mots</div>
+            <div class="badge badge-accent">Dialogue réussi</div>
+            <div class="badge badge-warning">Sans anglais 1 jour</div>
+        </div>
+        
+        <div class="card text-center">
+            <h4>📈 Ma progression</h4>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%;">30% A1</div>
+            </div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                Début : Sept 2025<br>
+                Objectif : A2 en juin
+            </p>
+        </div>
+        
+        <div class="card text-center">
+            <h4>🎯 Mon prochain défi</h4>
+            <div class="frame">
+                Cette semaine : _________
+            </div>
+            <p style="font-size: 9pt; margin-top: 10px;">
+                Date : ___/___<br>
+                Signature : _______
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Page 22: Scénarios Authentiques Contextualisés -->
+<div class="page" id="authentic-scenarios">
+    <h2>🎭 Scénarios Authentiques - Contexte Canadien</h2>
+    
+    <div class="shadow-card">
+        <h3>🏫 Scénario 1 : Journée d'accueil à l'école</h3>
+        <div class="grid grid-2">
+            <div class="card-accent">
+                <h4>🎯 Situation</h4>
+                <p style="font-size: 10pt;">
+                    C'est la rentrée scolaire. Un nouvel élève francophone du Québec arrive dans votre classe. Vous devez l'accueillir et lui faire visiter l'école.
+                </p>
+                <div class="badge badge-primary">A1-A2</div>
+                <div class="badge badge-success">Interculturel</div>
+            </div>
+            <div class="card-accent">
+                <h4>🗣️ Expressions clés</h4>
+                <div class="frame">Bienvenue dans notre école!</div>
+                <div class="frame">Tu viens d'où au Québec?</div>
+                <div class="frame">Ici, on dit "washroom", pas "toilettes"</div>
+                <div class="frame">Veux-tu que je te présente mes amis?</div>
+            </div>
+        </div>
+        
+        <div class="timeline mt-3">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Étape 1 : Accueil (5 min)</h4>
+                    <p style="font-size: 10pt;">
+                        <strong>Rôle A (élève local) :</strong> Saluer, se présenter, poser des questions sur le Québec<br>
+                        <strong>Rôle B (élève québécois) :</strong> Répondre, partager ses impressions, poser des questions sur l'école
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Étape 2 : Visite guidée (10 min)</h4>
+                    <p style="font-size: 10pt;">
+                        Faire le tour de l'école en expliquant les différences culturelles et linguistiques. Comparer les expressions québécoises et canadiennes-anglaises.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Étape 3 : Intégration (5 min)</h4>
+                    <p style="font-size: 10pt;">
+                        Présenter le nouvel élève à d'autres camarades. Planifier des activités ensemble pour la récréation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🛒 Scénario 2 : Au marché de Byward (Ottawa)</h3>
+        <div class="grid grid-2">
+            <div class="card-warning">
+                <h4>🎯 Situation</h4>
+                <p style="font-size: 10pt;">
+                    Vous visitez le marché Byward à Ottawa avec votre famille. Vous devez acheter des produits locaux en français et découvrir la culture franco-ontarienne.
+                </p>
+                <div class="badge badge-accent">A2</div>
+                <div class="badge badge-warning">Culturel</div>
+            </div>
+            <div class="card-warning">
+                <h4>💰 Expressions économiques</h4>
+                <div class="frame">Combien coûte le sirop d'érable?</div>
+                <div class="frame">C'est 15 dollars canadiens</div>
+                <div class="frame">Acceptez-vous la carte de débit?</div>
+                <div class="frame">Avez-vous de la monnaie?</div>
+            </div>
+        </div>
+        
+        <div class="culture-card mt-2">
+            <h4>🍁 Produits typiquement canadiens à découvrir</h4>
+            <div class="grid grid-4">
+                <div class="text-center">
+                    <div style="font-size: 24pt;">🍯</div>
+                    <strong>Sirop d'érable</strong>
+                    <small>Maple syrup</small>
+                </div>
+                <div class="text-center">
+                    <div style="font-size: 24pt;">🧀</div>
+                    <strong>Fromage en grains</strong>
+                    <small>Cheese curds</small>
+                </div>
+                <div class="text-center">
+                    <div style="font-size: 24pt;">🥧</div>
+                    <strong>Tourtière</strong>
+                    <small>Meat pie</small>
+                </div>
+                <div class="text-center">
+                    <div style="font-size: 24pt;">🍺</div>
+                    <strong>Cidre de glace</strong>
+                    <small>Ice cider</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🏒 Scénario 3 : Match de hockey junior</h3>
+        <div class="grid grid-2">
+            <div class="card-success">
+                <h4>🎯 Situation</h4>
+                <p style="font-size: 10pt;">
+                    Vous assistez à un match de hockey junior local. Vous devez commenter le jeu en français et interagir avec d'autres spectateurs francophones.
+                </p>
+                <div class="badge badge-success">A1-A2</div>
+                <div class="badge badge-primary">Sport</div>
+            </div>
+            <div class="card-success">
+                <h4>🏒 Vocabulaire hockey</h4>
+                <div class="frame">Allez les Bleus! (Go Blues!)</div>
+                <div class="frame">Quel beau but! (What a goal!)</div>
+                <div class="frame">L'arbitre est aveugle!</div>
+                <div class="frame">On va gagner la coupe!</div>
+            </div>
+        </div>
+        
+        <div class="info-box mt-2">
+            <h4>🎭 Extension interculturelle</h4>
+            <p style="font-size: 10pt;">
+                Comparer les traditions sportives : hockey au Canada vs football en France vs soccer aux États-Unis. 
+                Discuter des différences dans l'expression des émotions sportives selon les cultures.
+            </p>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🌨️ Scénario 4 : Tempête de neige - Journée pédagogique</h3>
+        <div class="grid grid-2">
+            <div class="feature-card">
+                <h4>🎯 Situation</h4>
+                <p style="font-size: 10pt;">
+                    Une tempête de neige ferme l'école. Vous devez organiser une journée d'activités en français à la maison avec vos frères et sœurs.
+                </p>
+                <div class="badge badge-warning">A2</div>
+                <div class="badge badge-accent">Autonomie</div>
+            </div>
+            <div class="feature-card">
+                <h4>❄️ Activités hivernales</h4>
+                <div class="frame">On fait un bonhomme de neige?</div>
+                <div class="frame">J'ai froid aux pieds!</div>
+                <div class="frame">Rentrons boire un chocolat chaud</div>
+                <div class="frame">Regardons un film québécois</div>
+            </div>
+        </div>
+        
+        <div class="note-prof mt-2">
+            <strong>Note pédagogique :</strong> Ce scénario développe l'autonomie linguistique et la capacité à utiliser le français dans un contexte familial authentiquement canadien.
+        </div>
+    </div>
+</div>
+
+<!-- Page 23: Bilingual Parent Letter -->
+<div class="page">
+    <h2>👨‍👩‍👧 Lettre aux Parents / Parent Letter</h2>
+    
+    <div class="shadow-card">
+        <div class="grid grid-2">
+            <div style="border-right: 2px solid var(--neutral-400); padding-right: 20px;">
+                <h3 style="color: var(--primary);">Chers Parents,</h3>
+                <p style="font-size: 10pt;">
+                    Votre enfant commence un voyage passionnant dans l'apprentissage du français ! Cette année, nous utilisons une approche communicative alignée sur le Cadre européen commun de référence pour les langues (CECR).
+                </p>
+                
+                <h4>📚 Notre programme</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Oral d'abord :</strong> Parler avant d'écrire</li>
+                    <li><strong>Activités ludiques :</strong> Jeux et chansons</li>
+                    <li><strong>Culture francophone :</strong> Découverte du monde</li>
+                    <li><strong>Progression individualisée :</strong> À son rythme</li>
+                </ul>
+                
+                <h4>🏠 Comment aider à la maison</h4>
+                <ul style="font-size: 10pt;">
+                    <li>Encouragez votre enfant à partager ses nouveaux mots</li>
+                    <li>Regardez des dessins animés en français ensemble</li>
+                    <li>Célébrez chaque progrès, même petit</li>
+                    <li>Utilisez les activités de la page suivante</li>
+                </ul>
+                
+                <h4>📊 Évaluation</h4>
+                <p style="font-size: 10pt;">
+                    Nous évaluons la progression, pas la perfection. Votre enfant recevra un portfolio montrant ses réussites plutôt que ses erreurs.
+                </p>
+            </div>
+            
+            <div style="padding-left: 20px;">
+                <h3 style="color: var(--primary);">Dear Parents,</h3>
+                <p style="font-size: 10pt;">
+                    Your child is beginning an exciting journey learning French! This year, we're using a communicative approach aligned with the Common European Framework of Reference for Languages (CEFR).
+                </p>
+                
+                <h4>📚 Our Program</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Oral first:</strong> Speaking before writing</li>
+                    <li><strong>Fun activities:</strong> Games and songs</li>
+                    <li><strong>Francophone culture:</strong> Discovering the world</li>
+                    <li><strong>Individualized progress:</strong> At their own pace</li>
+                </ul>
+                
+                <h4>🏠 How to Help at Home</h4>
+                <ul style="font-size: 10pt;">
+                    <li>Encourage your child to share new words</li>
+                    <li>Watch French cartoons together</li>
+                    <li>Celebrate every bit of progress</li>
+                    <li>Use the activities on the next page</li>
+                </ul>
+                
+                <h4>📊 Assessment</h4>
+                <p style="font-size: 10pt;">
+                    We assess progress, not perfection. Your child will receive a portfolio showing their achievements rather than their mistakes.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="family-box mt-3">
+        <h3>📱 Ressources numériques / Digital Resources</h3>
+        <div class="grid grid-2">
+            <div>
+                <strong>Applications recommandées :</strong>
+                <ul style="font-size: 10pt;">
+                    <li>Duolingo Kids (gratuit/free)</li>
+                    <li>TV5Monde Jeunesse</li>
+                    <li>Radio-Canada Jeunesse</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Sites web utiles :</strong>
+                <ul style="font-size: 10pt;">
+                    <li>www.ilini.com (vidéos sous-titrées)</li>
+                    <li>www.thefrenchexperiment.com</li>
+                    <li>jeunesse.tv5monde.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-box mt-3">
+        <h3>📞 Communication</h3>
+        <p><strong>Email :</strong> ______________________________</p>
+        <p><strong>Heures de bureau / Office hours :</strong> _____________</p>
+        <p><strong>Site de classe / Class website :</strong> _____________</p>
+        <p style="font-size: 10pt; margin-top: 15px;">
+            N'hésitez pas à me contacter avec vos questions ! / Please don't hesitate to contact me with questions!
+        </p>
+    </div>
+</div>
+
+<!-- Page 23: Home Activities -->
+<div class="page">
+    <h2>🏠 Activités à la Maison / Home Activities</h2>
+    
+    <div class="shadow-card">
+        <h3>Activités quotidiennes de 5 minutes</h3>
+        
+        <div class="grid grid-2">
+            <div class="card-success">
+                <h4>🌅 Lundi : Bonjour!</h4>
+                <p style="font-size: 10pt;">
+                    <strong>Parent dit / says:</strong> "Bonjour! Comment ça va?"<br>
+                    <strong>Enfant répond / child answers:</strong> "Ça va bien/mal"<br>
+                    <strong>Bonus:</strong> Ajouter "et toi?" (and you?)
+                </p>
+            </div>
+            
+            <div class="card-success">
+                <h4>🍽️ Mardi : À table!</h4>
+                <p style="font-size: 10pt;">
+                    Nommer 3 choses sur la table en français<br>
+                    Name 3 things on the table in French<br>
+                    <em>Ex: assiette, fourchette, verre</em>
+                </p>
+            </div>
+            
+            <div class="card-success">
+                <h4>🎨 Mercredi : Couleurs</h4>
+                <p style="font-size: 10pt;">
+                    "De quelle couleur est...?" (What color is...?)<br>
+                    Pointer 5 objets, dire la couleur<br>
+                    Point to 5 objects, say the color
+                </p>
+            </div>
+            
+            <div class="card-success">
+                <h4>🔢 Jeudi : Comptons!</h4>
+                <p style="font-size: 10pt;">
+                    Compter de 1 à 20 ensemble<br>
+                    Count from 1 to 20 together<br>
+                    <strong>Défi:</strong> À rebours! (backwards!)
+                </p>
+            </div>
+            
+            <div class="card-success">
+                <h4>🎵 Vendredi : Chanson</h4>
+                <p style="font-size: 10pt;">
+                    Écouter une chanson française<br>
+                    Listen to a French song<br>
+                    Répéter le refrain / Repeat the chorus
+                </p>
+            </div>
+            
+            <div class="card-success">
+                <h4>🎮 Weekend : Jeu</h4>
+                <p style="font-size: 10pt;">
+                    Simon dit... / Simon says...<br>
+                    "Jacques a dit..." en français!<br>
+                    <em>Ex: touche ton nez, lève la main</em>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="feature-card mt-3">
+        <h3>🎯 Défis famille / Family Challenges</h3>
+        
+        <table style="font-size: 10pt;">
+            <thead>
+                <tr>
+                    <th>Semaine</th>
+                    <th>Défi / Challenge</th>
+                    <th>Récompense / Reward</th>
+                    <th>✅</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Apprendre 5 mots de politesse / Learn 5 polite words</td>
+                    <td>Autocollant / Sticker</td>
+                    <td>☐</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Regarder 1 épisode en français / Watch 1 episode in French</td>
+                    <td>Choix du dessert / Choose dessert</td>
+                    <td>☐</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Enseigner 3 mots à un ami / Teach 3 words to a friend</td>
+                    <td>Extra temps de jeu / Extra play time</td>
+                    <td>☐</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Faire une recette française / Make a French recipe</td>
+                    <td>Certificat spécial / Special certificate</td>
+                    <td>☐</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="culture-card mt-3">
+        <h3>🥐 Recette facile : Crêpes</h3>
+        <div class="grid grid-2">
+            <div>
+                <strong>Ingrédients :</strong>
+                <ul style="font-size: 10pt;">
+                    <li>250g farine (flour)</li>
+                    <li>4 œufs (eggs)</li>
+                    <li>500ml lait (milk)</li>
+                    <li>Pincée de sel (pinch of salt)</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Vocabulaire cuisine :</strong>
+                <p style="font-size: 10pt;">
+                    Mélanger = Mix<br>
+                    Verser = Pour<br>
+                    Faire cuire = Cook<br>
+                    Retourner = Flip<br>
+                    <em>Bon appétit!</em>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 24: Gestion de Classe en FLS -->
+<div class="page" id="classroom-management">
+    <h2>🎯 Gestion de Classe en FLS - Guide Complet</h2>
+    
+    <div class="shadow-card">
+        <h3>🏛️ Établir un Environnement Francophone</h3>
+        <div class="grid grid-2">
+            <div class="card-accent">
+                <h4>🌍 Immersion Physique</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Affichage :</strong> 80% français, 20% anglais pour transitions</li>
+                    <li><strong>Zones linguistiques :</strong> Coin français obligatoire</li>
+                    <li><strong>Signalétique :</strong> Étiquettes bilingues avec français dominant</li>
+                    <li><strong>Bibliothèque :</strong> Livres français accessibles et attrayants</li>
+                    <li><strong>Musique :</strong> Playlist francophone pour transitions</li>
+                </ul>
+            </div>
+            <div class="card-accent">
+                <h4>🎭 Immersion Comportementale</h4>
+                <ul style="font-size: 10pt;">
+                    <li><strong>Salutations :</strong> Toujours en français</li>
+                    <li><strong>Routines :</strong> Procédures en français avec gestes</li>
+                    <li><strong>Récompenses :</strong> Système de points "français"</li>
+                    <li><strong>Corrections :</strong> Reformulation positive, pas correction directe</li>
+                    <li><strong>Modélisation :</strong> Enseignant parle français 90% du temps</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>📋 Routines Quotidiennes pour Encourager le Français</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>🌅 Accueil (5 min)</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <strong>Routine :</strong>
+                            <div class="frame">Bonjour [Nom]! Comment ça va?</div>
+                            <div class="frame">Qu'est-ce que tu as fait hier soir?</div>
+                            <div class="frame">Es-tu prêt(e) pour le français?</div>
+                        </div>
+                        <div>
+                            <strong>Stratégies :</strong>
+                            <ul style="font-size: 9pt;">
+                                <li>Accueillir individuellement</li>
+                                <li>Gestes encourageants</li>
+                                <li>Accepter réponses courtes</li>
+                                <li>Reformuler positivement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>📚 Début de cours (10 min)</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <strong>Échauffement linguistique :</strong>
+                            <div class="frame">Mot du jour + définition gestuelle</div>
+                            <div class="frame">Révision express (3 mots d'hier)</div>
+                            <div class="frame">Question météo/humeur</div>
+                        </div>
+                        <div>
+                            <strong>Techniques d'engagement :</strong>
+                            <ul style="font-size: 9pt;">
+                                <li>Répétition chorale</li>
+                                <li>Gestes associés</li>
+                                <li>Compétition amicale</li>
+                                <li>Récompenses immédiates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>⏰ Transitions (2-3 min)</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <strong>Signaux français :</strong>
+                            <div class="frame">Attention, s'il vous plaît!</div>
+                            <div class="frame">Rangez vos affaires</div>
+                            <div class="frame">Préparez-vous pour...</div>
+                        </div>
+                        <div>
+                            <strong>Supports visuels :</strong>
+                            <ul style="font-size: 9pt;">
+                                <li>Minuteur visible</li>
+                                <li>Cartes de consignes</li>
+                                <li>Musique de transition</li>
+                                <li>Gestes codifiés</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>🎯 Fin de cours (5 min)</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <strong>Bilan français :</strong>
+                            <div class="frame">Qu'est-ce qu'on a appris?</div>
+                            <div class="frame">Quel mot tu retiens?</div>
+                            <div class="frame">À demain! Au revoir!</div>
+                        </div>
+                        <div>
+                            <strong>Consolidation :</strong>
+                            <ul style="font-size: 9pt;">
+                                <li>Exit ticket en français</li>
+                                <li>Auto-évaluation rapide</li>
+                                <li>Aperçu cours suivant</li>
+                                <li>Encouragements personnalisés</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🎭 Stratégies Comportementales Spécifiques FLS</h3>
+        
+        <div class="grid grid-2">
+            <div class="card-warning">
+                <h4>😰 Gestion de l'Anxiété Linguistique</h4>
+                <div class="grid grid-2" style="font-size: 10pt;">
+                    <div>
+                        <strong>Signes à observer :</strong>
+                        <ul>
+                            <li>Silence prolongé</li>
+                            <li>Retour à l'anglais</li>
+                            <li>Évitement du regard</li>
+                            <li>Participation réduite</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Interventions :</strong>
+                        <ul>
+                            <li>Choix de participation</li>
+                            <li>Partenaire de confiance</li>
+                            <li>Temps de préparation</li>
+                            <li>Validation émotionnelle</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="frame mt-2">
+                    <strong>Script :</strong> "C'est normal d'avoir peur. On apprend ensemble. Tu peux essayer quand tu es prêt(e)."
+                </div>
+            </div>
+            
+            <div class="card-success">
+                <h4>🚀 Motivation et Engagement</h4>
+                <div class="grid grid-2" style="font-size: 10pt;">
+                    <div>
+                        <strong>Récompenses efficaces :</strong>
+                        <ul>
+                            <li>Points "français" collectifs</li>
+                            <li>Privilèges linguistiques</li>
+                            <li>Certificats personnalisés</li>
+                            <li>Rôles spéciaux en français</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Défis motivants :</strong>
+                        <ul>
+                            <li>Journée sans anglais</li>
+                            <li>Ambassadeur français</li>
+                            <li>Défi famille francophone</li>
+                            <li>Projet communautaire</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="frame mt-2">
+                    <strong>Célébration :</strong> "Bravo! Tu as utilisé 5 nouveaux mots aujourd'hui!"
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="shadow-card mt-3">
+        <h3>🔧 Techniques de Correction et Feedback</h3>
+        
+        <table style="font-size: 10pt;">
+            <thead>
+                <tr>
+                    <th>Situation</th>
+                    <th>❌ À éviter</th>
+                    <th>✅ Technique recommandée</th>
+                    <th>Exemple</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Erreur de grammaire</strong></td>
+                    <td>"Non, c'est faux!"</td>
+                    <td>Reformulation positive</td>
+                    <td>Élève: "Je suis allé au magasin"<br>Prof: "Ah, tu es allée au magasin!"</td>
+                </tr>
+                <tr>
+                    <td><strong>Mot anglais utilisé</strong></td>
+                    <td>"En français seulement!"</td>
+                    <td>Pont linguistique</td>
+                    <td>Élève: "J'ai perdu mon pencil"<br>Prof: "Ton crayon? Oui, où est ton crayon?"</td>
+                </tr>
+                <tr>
+                    <td><strong>Prononciation difficile</strong></td>
+                    <td>Répétition forcée</td>
+                    <td>Modélisation naturelle</td>
+                    <td>Élève: "Je mange du pan"<br>Prof: "Mmm, du pain! J'adore le pain aussi."</td>
+                </tr>
+                <tr>
+                    <td><strong>Blocage complet</strong></td>
+                    <td>Insister ou ignorer</td>
+                    <td>Support scaffoldé</td>
+                    <td>"Tu veux dire... [geste]? Ou peut-être... [choix multiple]?"</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="note-prof mt-3">
+        <strong>🎯 Principe fondamental :</strong> En FLS, la gestion de classe vise à maximiser l'exposition et l'usage du français dans un environnement sécurisant. L'erreur est un outil d'apprentissage, pas un échec. Chaque élève progresse à son rythme vers la compétence communicative.
+    </div>
+</div>
+
+<!-- Page 25: Advanced AI Prompts -->
+<div class="page">
+    <h2>🤖 Prompts IA Avancés pour Enseignants</h2>
+    
+    <div class="shadow-card">
+        <h3>Création de contenu différencié</h3>
+        
+        <div class="card">
+            <h4>📚 Prompt 1 : Texte à niveaux multiples</h4>
+            <div class="box" style="background: var(--neutral-200); font-family: monospace; font-size: 10pt;">
+                Crée un texte sur [THÈME] en 3 versions progressives :
+                - Version A1 (50 mots) : phrases simples, présent, vocabulaire de base
+                - Version A1+ (75 mots) : ajout d'adjectifs et connecteurs simples (et, mais)
+                - Version A2 (100 mots) : passé composé, justifications avec "parce que", vocabulaire enrichi
+                
+                Thème exemple : Une journée à l'école
+                Format : Récit à la première personne
+                Inclure : 5 mots de vocabulaire cible en gras dans chaque version
+            </div>
+        </div>
+        
+        <div class="card mt-2">
+            <h4>🎮 Prompt 2 : Générateur d'activités interactives</h4>
+            <div class="box" style="background: var(--neutral-200); font-family: monospace; font-size: 10pt;">
+                Conçois une séquence de 3 activités progressives sur [STRUCTURE] :
+                
+                1. Activité de reconnaissance (5 min) : identifier la structure dans 10 exemples
+                2. Activité de production guidée (10 min) : compléter 8 phrases avec choix multiples
+                3. Activité de production libre (10 min) : créer 5 phrases personnelles
+                
+                Structure : [ex: comparatif "plus... que"]
+                Contexte : Adolescents 12-14 ans, intérêts : technologie, sports, musique
+                Inclure : Corrigé avec explications + variantes pour élèves avancés
+            </div>
+        </div>
+        
+        <div class="card mt-2">
+            <h4>📊 Prompt 3 : Évaluation formative personnalisée</h4>
+            <div class="box" style="background: var(--neutral-200); font-family: monospace; font-size: 10pt;">
+                Génère une grille d'évaluation formative pour la compétence : [PRODUCTION ORALE]
+                
+                Critères à évaluer :
+                - Prononciation et intonation (4 niveaux)
+                - Richesse du vocabulaire (4 niveaux)
+                - Correction grammaticale (4 niveaux)
+                - Fluidité et interaction (4 niveaux)
+                
+                Pour chaque critère, fournir :
+                - Descripteurs observables précis
+                - Exemples concrets d'erreurs fréquentes
+                - Stratégies de remédiation ciblées
+                - Phrases de feedback constructif pré-écrites
+            </div>
+        </div>
+        
+        <div class="card mt-2">
+            <h4>🌍 Prompt 4 : Intégration culturelle authentique</h4>
+            <div class="box" style="background: var(--neutral-200); font-family: monospace; font-size: 10pt;">
+                Crée une capsule culturelle sur [PAYS/RÉGION FRANCOPHONE] incluant :
+                
+                1. Fait surprenant adapté à l'âge (K-12)
+                2. Comparaison avec la culture locale (Canada/US)
+                3. Mini-dialogue authentique de 6 lignes (niveau A1-A2)
+                4. Activité "Et chez toi?" pour personnalisation
+                5. 3 ressources multimédia (chanson, vidéo courte, image)
+                
+                Pays : [ex: Sénégal, Belgique, Québec, Martinique]
+                Thématique : [ex: fêtes, école, nourriture, sports]
+                Durée totale : 15 minutes
+            </div>
+        </div>
+        
+        <div class="card mt-2">
+            <h4>🎯 Prompt 5 : Différenciation pour besoins spéciaux</h4>
+            <div class="box" style="background: var(--neutral-200); font-family: monospace; font-size: 10pt;">
+                Adapte cette activité pour 4 profils d'apprenants :
+                
+                Activité originale : [Description de l'activité standard]
+                
+                Adaptations à créer :
+                1. Élève dyslexique : police, espacement, codage couleur
+                2. Élève TDAH : séquençage, pauses mouvement, gamification
+                3. Élève anxieux : options de participation, feedback privé
+                4. Heritage speaker : extension, rôle de mentor, défi supplémentaire
+                
+                Pour chaque adaptation, préciser :
+                - Modifications concrètes
+                - Matériel supplémentaire nécessaire
+                - Critères de réussite ajustés
+            </div>
+        </div>
+    </div>
+    
+    <div class="note-prof mt-3">
+        <strong>💡 Conseils d'utilisation des prompts IA :</strong>
+        <ul style="font-size: 10pt;">
+            <li><strong>Personnalisation :</strong> Remplacez [ÉLÉMENTS] par vos besoins spécifiques</li>
+            <li><strong>Itération :</strong> Demandez des révisions jusqu'à satisfaction</li>
+            <li><strong>Validation :</strong> Toujours vérifier l'exactitude linguistique et culturelle</li>
+            <li><strong>Documentation :</strong> Gardez vos meilleurs prompts dans un document partagé</li>
+            <li><strong>Collaboration :</strong> Partagez vos prompts efficaces avec l'équipe</li>
+        </ul>
+    </div>
+    
+    <div class="info-box">
+        <h3>⚠️ Éthique et bonnes pratiques</h3>
+        <p><strong>À FAIRE :</strong></p>
+        <ul style="font-size: 10pt;">
+            <li>✅ Utiliser l'IA comme assistant, pas remplacement</li>
+            <li>✅ Adapter le contenu au contexte local</li>
+            <li>✅ Vérifier l'âge-approprié du contenu</li>
+            <li>✅ Maintenir la voix pédagogique humaine</li>
+        </ul>
+        <p><strong>À ÉVITER :</strong></p>
+        <ul style="font-size: 10pt;">
+            <li>❌ Copier-coller sans révision</li>
+            <li>❌ Ignorer les différences culturelles</li>
+            <li>❌ Remplacer l'interaction humaine</li>
+            <li>❌ Partager des données d'élèves</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
